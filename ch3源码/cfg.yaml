@@ -1,0 +1,50 @@
+# 数据集参数，超参，训练配置
+# date and model config
+
+# ################################################################
+#                             Data
+# ################################################################
+device: 'cpu' # calculate device
+dataset_dir: './dataset/' # dataset directory
+meta_path: './dataset/meta.csv' # dataset metafile
+max_wav_value: 32768. # 16 bytes maximum value
+sampling_rate: 16000  # sampling rate
+win_len: 512  # fft size
+hop: 160  # frame stride
+nfilter: 400  # frame size
+n_mel_channels: 40  # mel channels
+mel_fmin: 50  # minimum cut-off frequency
+mel_fmax: 800 # maximum cut-off frequency
+seed: 1234  # random seed
+
+# ################################################################
+#                             Model Structure
+# ################################################################
+n_pre_layer: 2          # prenet layers
+pre_layer_hid_dim: 1024 # the first layer hidden size
+pre_layer_out_dim: 512  # output layer hidden size
+pre_layer_drop: 0.3     # prenet dropout
+
+n_fc_layers: 2          # fcnet layers
+fc_layer_dim: 1024      # the first hidden size
+n_classes: 6            # classes
+fc_layer_drop: 0.3      # fcnet dropout
+
+kernel_size: 5          # kernel size:SAME
+conv_dim: 512           # conv1d feature channels
+n_conv_layers: 3        # conv1d layers
+conv_drop: 0.3          # conv1d dropout prob
+
+rnn_hid_dim: 512        # RNN hidden size
+rnn_layers: 2           # rnn layers
+bidirect: true          # bi-directional or not
+
+# ################################################################
+#                             Experiment
+# ################################################################
+lr: 0.0005
+momentum: 0.9
+epcoh: 100 # 20-60 epoch is enough
+batch_size: 64
+save_step: 500
+verbose_step: 100
